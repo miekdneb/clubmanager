@@ -2,10 +2,10 @@ package co.uk.mbend.clubmanager;
 
 public class InfoText {
 
-	static String[] Tabs = { "","General Club Information","Constitution", "Rules Of Shooting",
+	static String[] Tabs = {"General Club Information","Constitution", "Rules Of Shooting",
 			"Website Guide", "Committee Roles","Promotional Material" };
 
-	static String[] Information = {"", 
+	static String[] Information = { 
 		"Shooting Times:\n\n Friday 18:30-21:30 \n Sunday 11:30-14:30",
 		"1.The Club shall be known as The University of Plymouth Archery Club, hereafter referred to as the club." +
 				"\n\n2(a).The Funds and property of the club shall be vested in the University of Plymouth Students Union.\n2(b).All monies and " +

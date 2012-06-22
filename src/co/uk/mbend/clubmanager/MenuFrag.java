@@ -14,7 +14,7 @@ public class MenuFrag extends ListFragment
 	public interface OnMenuSelectListener{
 		public void onMenuItemSelected(int position);
 	}
-		String classes[]={"Bows","Arrows","Accessories","Member Details","Scores","Information","Application Settings"};
+		String classes[]={"Bows","Arrows","Accessories","Member Details","Scores","Competitions","Information"};
 		
 	@Override
 	public void onStart() {

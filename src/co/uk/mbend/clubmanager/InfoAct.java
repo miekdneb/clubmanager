@@ -1,48 +1,33 @@
 package co.uk.mbend.clubmanager;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
-import android.widget.TextView;
 
-public class InfoFrag extends Fragment {
+public class InfoAct extends Activity
+{
 
+	
 	TextView tabContentTitle;
 	TextView tabContentText;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater,
-	 * android.view.ViewGroup, android.os.Bundle)
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.info, container, false);
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.Fragment#onStart()
-	 */
-	@Override
-	public void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		if(((TabHost) getView().findViewById(R.id.tabhost))
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.info);
+		
+		
+		if(((TabHost) findViewById(R.id.tabhost))
 				.getCurrentTabTag()!=null)
 		{
 			Log.i("Tabs","Already Created");
@@ -50,10 +35,10 @@ public class InfoFrag extends Fragment {
 		else
 		{
 			Log.i("Tabs","not Present");
-			tabContentTitle= (TextView) getView().findViewById(R.id.tabtitle);
-			tabContentText= (TextView) getView().findViewById(R.id.tabtext);
+			tabContentTitle= (TextView) findViewById(R.id.tabtitle);
+			tabContentText= (TextView) findViewById(R.id.tabtext);
 		
-			TabHost tabs = (TabHost) getView().findViewById(R.id.tabhost);
+			TabHost tabs = (TabHost) findViewById(R.id.tabhost);
 			tabs.setup();
 		
 			TabSpec tspec1 = tabs.newTabSpec("0");
@@ -111,47 +96,41 @@ public class InfoFrag extends Fragment {
 		
 		}
 	}
-
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.Fragment#onPause()
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
 	 */
 	@Override
-	public void onPause() {
+	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-
-		String tabtag = ((TabHost) getView().findViewById(R.id.tabhost))
+		String tabtag = ((TabHost) findViewById(R.id.tabhost))
 				.getCurrentTabTag();
 		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(getActivity());
+				.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString("InfoTab", tabtag);
 		editor.commit();
 		Log.i("last tab used (pause):", tabtag);
+		
 	}
-
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.support.v4.app.Fragment#onResume()
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onResume()
 	 */
 	@Override
-	public void onResume() {
+	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		Log.i("onresume", "called");
 		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(getActivity());
+				.getDefaultSharedPreferences(this);
 		String pasttab = settings.getString("InfoTab", "0");
-		((TabHost) getView().findViewById(R.id.tabhost))
+		((TabHost) findViewById(R.id.tabhost))
 				.setCurrentTabByTag(pasttab);
-		//int tabIdInt= Integer.parseInt(pasttab);
-		//tabContentTitle.setText(co.uk.mbend.clubmanager.InfoText.Tabs[tabIdInt]);
-		//tabContentText.setText(co.uk.mbend.clubmanager.InfoText.Information[tabIdInt]);
-
+		
 	}
+
+	
+	
+	
+
 }
