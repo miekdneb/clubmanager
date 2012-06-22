@@ -8,8 +8,8 @@ import android.util.Log;
 
 public class Menu extends FragmentActivity implements
 		MenuFrag.OnMenuSelectListener {
-	String classes[] = { "BowAct", "ArrowAct", "AccAct", "MemberAct",
-			"ScoreAct", "CompAct", "InfoAct" };
+	
+	int lastposition;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,41 +44,42 @@ public class Menu extends FragmentActivity implements
 												// R.layout.main)
 		{
 
-			switch (position) {
+			Fragment currentlyrunningfragment = getSupportFragmentManager()
+					.findFragmentById(R.id.details);
+			if (currentlyrunningfragment == null) // if no fragment is running,
+													// open selected
+			{
+				getSupportFragmentManager().beginTransaction()
+						.add(R.id.details, co.uk.mbend.clubmanager.Menuitems.menuFragTest(position)).commit();
+			} else if (position != lastposition) // If
+													// a
+													// different
+													// fragment
+													// is
+													// elected,
+													// destroy
+													// the
+													// currently
+													// running
+													// one,
+													// then
+													// open
+													// selected
+			{
+				getSupportFragmentManager().beginTransaction()
+						.remove(currentlyrunningfragment).commit();
+				getSupportFragmentManager().beginTransaction()
+						.add(R.id.details, co.uk.mbend.clubmanager.Menuitems.menuFragTest(position)).commit();
+				Log.i("destroying", "fragment");
+			} // if the same fragment is selected, do nothing
 
-			case 6:
-				// InfoFrag infofrag = (InfoFrag)
-				// getSupportFragmentManager().findFragmentById(R.id.details);
-				Fragment test5 = getSupportFragmentManager().findFragmentById(
-						R.id.details);
-				if (test5 == null) {
-					Log.i("infofrag", "not present, starting. . .");
+			lastposition = position;
+		}
 
-					InfoFrag infoFragment = new InfoFrag();
-					getSupportFragmentManager().beginTransaction()
-							.add(R.id.details, infoFragment).commit(); // Starts
-																		// Info
-																		// Fragment
-				} else {
-					getSupportFragmentManager().beginTransaction()
-							.remove(test5).commit();
-
-					InfoFrag infoFragment = new InfoFrag();
-					getSupportFragmentManager().beginTransaction()
-							.add(R.id.details, infoFragment).commit(); // Starts
-																		// Info
-																		// Fragment
-				}
-				break;
-
-			default:
-				Log.i("item selected", "id:" + position);
-				break;
-			}
-		} else {
+		else {
 			Log.i("fragcontainer", "nothing");
 
-			String menupos = classes[position];
+			String menupos = co.uk.mbend.clubmanager.Menuitems.Activities[position];
 			try {
 				Class<?> ourClass = Class.forName("co.uk.mbend.clubmanager."
 						+ menupos);
