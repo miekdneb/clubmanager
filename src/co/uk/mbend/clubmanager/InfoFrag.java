@@ -13,6 +13,11 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+
+//use shared variable in separate file (menuitems.java?/menu.java) to record current tab? - can be blanked on app launch (splashscreen?)
+
+
+
 public class InfoFrag extends Fragment {
 
 	TextView tabContentTitle;

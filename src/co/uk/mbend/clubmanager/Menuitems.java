@@ -7,8 +7,8 @@ public class Menuitems {
 	static String[] Activities = { "BowAct", "ArrowAct", "AccAct", "MemberAct",
 			"ScoreAct", "CompAct", "InfoAct" };
 
-	static String[] Fragments = { "BowFrag", "ArrowFrag", "AccFrag", "MemberFrag",
-			"ScoreFrag", "CompFrag", "InfoFrag" };
+	//static String[] Fragments = { "BowFrag", "ArrowFrag", "AccFrag", "MemberFrag",
+		//	"ScoreFrag", "CompFrag", "InfoFrag" };
 
 	static String[] Names = { "Bows", "Arrows", "Accessories", "Members",
 			"Scores", "Competitions", "Information" };

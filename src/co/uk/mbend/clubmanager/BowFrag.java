@@ -1,12 +1,17 @@
 package co.uk.mbend.clubmanager;
 
+import java.lang.Object;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class BowFrag extends Fragment {
+	
+	TextView bowtest;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -31,5 +36,7 @@ public class BowFrag extends Fragment {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		bowtest = (TextView) getView().findViewById(R.id.bowTextView2);
+		bowtest.setText("test");
 	}
 }
